@@ -120,7 +120,6 @@ COPY staging_events
 FROM {}
 iam_role {}
 FORMAT AS json {}
-REGION AS 'us-west-2'
 """).format(config['S3']['LOG_DATA'], config['IAM_ROLE']['ARN'], config['S3']['LOG_JSONPATH'])
 
 staging_songs_copy = ("""
@@ -128,7 +127,6 @@ COPY staging_songs
 FROM {}
 iam_role {}
 FORMAT AS json 'auto'
-REGION AS 'us-west-2'
 """).format(config['S3']['SONG_DATA'], config['IAM_ROLE']['ARN'])
 
 # FINAL TABLES
