@@ -4,10 +4,11 @@ A startup called Sparkify wants to analyze the data they've been collecting on s
 # Files on this repository
 Making a Cloud DataWarehouse using Amazon Redshift Cluster requires load data from S3 to staging tables and insert records from staging tables to star schema tables
 
-- 'create_tables.py' calls drop_tables & create_tables functions for making data structure
-- 'etl.py' calls load_staging_tables & insert_tables functions for loading data and insert rows on star schema. Data from S3 is json format, the file 'log_json_path.json' is a format template for LOG data.
-- 'sql_queries.py' is used to define tables structure
-- 'wordcloud.ipynb' is a notebook that makes a wordcloud with songs titles, is necessary to install wordcloud library
+- `create_tables.py` calls drop_tables & create_tables functions for making data structure
+- `etl.py` calls load_staging_tables & insert_tables functions for loading data and insert rows on star schema.
+- Data from S3 is json format, the file `log_json_path.json` is a format template for LOG data.
+- `sql_queries.py` is used to define tables structure
+- `wordcloud.ipynb` is a notebook that makes a wordcloud with songs titles, is necessary to install wordcloud library
 ![image](wordcloudTitles.png)
 
 # Star schema
