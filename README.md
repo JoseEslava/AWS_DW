@@ -13,8 +13,13 @@ Making a Cloud DataWarehouse using Amazon Redshift Cluster requires load data fr
 # Star schema
 Perform ETL to create `songs`, `artists`, `users` and `time` dimensional tables; `songplay` fact table INTO AWS redshift cluster
 
-- Use the `load_staging_tables` function to load JSON files from LOG_DATA and SONG_DATA
-- Use the `insert_tables` function to read records from staging tables (temp storage) and write them on dimensional and fact tables (permanent storage)
+- Use the `load_staging_tables` function to load JSON files from LOG_DATA and SONG_DATA (raw data)
+- Use the `insert_tables` function to read records from staging tables (temp storage without filters) and write them on dimensional and fact tables (permanent storage); the main filter applied is page = 'NextSong'. This function execute some queries:
+    - `songplay_table_insert` is for fact table and filters records that match song title, artist name and song duration
+    - `user_table_insert` is for dim table without additional record filter
+    - `song_table_insert` is for dim table with song_id IS NOT NULL record filter
+    - `artist_table_insert` is for dim table with song_id IS NOT NULL record filter
+    - `time_table_insert` is for dim table without additional record filter
 
 # Services in different AWS regions
 Be careful if redshift cluster is in a different region from S3 bucket, in that case you have to specify the REGION on COPY statement. This operation between regions is time consuming

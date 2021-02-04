@@ -23,7 +23,7 @@ firstName varchar,
 gender char,
 itemInSession int,
 lastName varchar,
-length float,
+length numeric,
 level varchar,
 location varchar,
 method varchar,
@@ -136,7 +136,7 @@ INSERT INTO songplays (start_time, user_id, level, song_id, artist_id, session_i
 SELECT DISTINCT TIMESTAMP 'epoch' + ts/1000 * INTERVAL '1 second' AS start_time, userid, level, song_id, artist_id, sessionid, location, useragent
 FROM staging_events AS se
 INNER JOIN staging_songs AS ss
-ON ss.artist_name = se.artist AND ss.title = se.song AND se.page = 'NextSong'
+ON ss.artist_name = se.artist AND ss.title = se.song AND ss.duration = se.length AND se.page = 'NextSong'
 """)
 
 user_table_insert = ("""

@@ -4,12 +4,18 @@ from sql_queries import create_table_queries, drop_table_queries
 
 
 def drop_tables(cur, conn):
+    """
+    This functions delete staging tables and star schema tables from redshift cluster
+    """
     for query in drop_table_queries:
         cur.execute(query)
         conn.commit()
 
 
 def create_tables(cur, conn):
+    """
+    This functions create data structure (staging tables and star schema tables) into redshift cluster
+    """
     for query in create_table_queries:
         cur.execute(query)
         conn.commit()
